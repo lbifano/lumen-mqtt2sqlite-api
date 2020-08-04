@@ -22,7 +22,7 @@ class MqttController extends BaseController{
         }
     }
     public function getDataTopic($topic){
-        $data = Mqtt::where('topic', str_replace("|", "/", $topic))->get();
+        $data = Mqtt::where('topic', str_replace("|", "/", $topic))->take(-5)->get();
         if(count($data) > 0){
             return response()->json(['data' => $data], 200);
         }else{
